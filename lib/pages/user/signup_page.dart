@@ -1,17 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../apiManager/api_manager.dart';
-import '../../utils/api_constant.dart';
 import '../../utils/utils.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_field_widget.dart';
 import '../../widgets/profile_image_widget.dart';
 import '../../widgets/page_tittle_widget.dart';
-import 'dart:io';
-import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
-
 import '../terms_and_condition_page/terms_and_condition_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -42,7 +34,6 @@ class _SignupPageState extends State<SignupPage> {
 
   String passwordString = "";
   bool _isTermsChecked = false;
-  File? _profileImageFile;
 
   @override
   void dispose() {
@@ -89,9 +80,7 @@ class _SignupPageState extends State<SignupPage> {
                       imagePath: "",
                       profileImageData: "",
                       onClicked: () {},
-                      onImageSelect: (imageFile) {
-                        _profileImageFile = imageFile;
-                      },
+                      onImageSelect: (imageFile) {},
                     ),
                   ),
                   const SizedBox(

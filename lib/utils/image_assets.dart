@@ -48,4 +48,5 @@ class ImagePath {
   static const String icRoundSend = "assets/user/ic_round_send.png";
   static const String icCallIcon = "assets/user/ic_call_icon.png";
   static const String icBlock = "assets/user/ic_block.png";
+  static const String icSliderImage = "assets/slider_image.jpg";
 }

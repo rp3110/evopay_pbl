@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import '../../apiManager/api_manager.dart';
-import '../../utils/api_constant.dart';
-import '../../utils/shared_preferences.dart';
 import '../../utils/utils.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_field_widget.dart';
 import '../../widgets/page_tittle_widget.dart';
-import 'login_page.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);
@@ -92,8 +87,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             isError: true,
                             message:
                                 "New password and confirm password must be same.");
-                      } else {
-                        apiCallChangePassword();
                       }
                     }
                   }),
@@ -209,52 +202,5 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
               errorMessages: const ["Please enter your confirm password"]);
         });
-  }
-
-  Future<void> apiCallChangePassword() async {
-    var map = <String, dynamic>{};
-    map["Id"] = GlobalVariable.userDetail.token?.id;
-    map["CurrentPassword"] = txtCurrentPasswordController.text;
-    map["NewPassword"] = txtNewPasswordController.text;
-
-    EasyLoading.show();
-
-    APIManager.instance
-        .postRequest(
-            requestURL: APIConstant.changePassword,
-            requestData: map,
-            context: context,
-            isAuthRequired: true)
-        .then((response) {
-      EasyLoading.dismiss();
-      if (response != null) {
-        if (response[APIManager.statusCode] == 200) {
-          const message = "Your password has been successfully changed. "
-              "Please log in with new password.";
-          CommonFunction.showSnackBar(
-              context: context, isError: false, message: message);
-          clearDataToFreshLogin();
-        } else {
-          //Failure Response
-          final message = response[APIManager.message];
-          if (message != null) {
-            CommonFunction.showSnackBar(
-                context: context, isError: true, message: message);
-          }
-        }
-      }
-    });
-  }
-
-  void clearDataToFreshLogin() {
-    GlobalVariable.isInitiateAppForDefaultLogin = false;
-    GlobalVariable.userDetail.token = null;
-    GlobalVariable.userDetail.user = null;
-    Preferences.removeUserDetail();
-    Future.delayed(const Duration(milliseconds: 200), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const LoginPage()),
-          (Route<dynamic> route) => false);
-    });
   }
 }

@@ -27,7 +27,7 @@ class _WidgetImageSliderState extends State<WidgetImageSlider> {
                 itemCount: 3,
                 itemBuilder:
                     (BuildContext context, int itemIndex, int pageViewIndex) {
-                  return Image.asset(ImagePath.appLogo,
+                  return Image.asset(ImagePath.icSliderImage,
                       fit: BoxFit.cover,
                       height: 180,
                       width: MediaQuery.of(context).size.width);
@@ -39,7 +39,7 @@ class _WidgetImageSliderState extends State<WidgetImageSlider> {
                   onPageChanged: (index, reason) {
                     _current.value = index;
                   },
-                  viewportFraction: 1,
+                  viewportFraction: 0.9,
                   initialPage: 0,
                   enableInfiniteScroll: true,
                   reverse: false,

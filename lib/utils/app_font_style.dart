@@ -63,7 +63,7 @@ class AppFontStyle {
 
   static TextStyle tabLabelSelectedTextStyle() {
     return TextStyle(
-        color: AppColor.primaryBlueColor,
+        color: AppColor.defaultBlack,
         fontFamily: AppFontStyle.fontFamilyRedHatDisplay,
         fontWeight: AppFontStyle.fontWeight(FontType.bold),
         fontSize: 14);

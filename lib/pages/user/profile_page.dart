@@ -1,20 +1,11 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mime/mime.dart';
-import '../../apiManager/api_manager.dart';
-import '../../utils/api_constant.dart';
-import '../../utils/shared_preferences.dart';
-import 'change_password_page.dart';
 import '../../utils/utils.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_field_widget.dart';
 import '../../widgets/profile_image_widget.dart';
 import '../../widgets/page_tittle_widget.dart';
 import 'package:gool_goal_app/models/user_detail.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:http_parser/http_parser.dart';
 import 'login_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -35,9 +26,8 @@ class _ProfilePageState extends State<ProfilePage> {
   final FocusNode txtFirstNameFocus = FocusNode();
   final FocusNode txtLastNameFocus = FocusNode();
 
-  bool _isEditModeEnable = false;
+  final bool _isEditModeEnable = false;
   var user = User();
-  File? _profileImageFile;
 
   @override
   void dispose() {
@@ -45,21 +35,6 @@ class _ProfilePageState extends State<ProfilePage> {
     txtFirstNameController.dispose();
     txtLastNameController.dispose();
     super.dispose();
-  }
-
-  void fetchUserProfile({bool? afterProfileUpdate = false}) {
-    APIManagerUtils.apiCallGetUserProfile(context, isInBackground: false)
-        .then((value) {
-      setState(() {
-        if (afterProfileUpdate == true) {
-          _isEditModeEnable = false;
-        }
-        user = GlobalVariable.userDetail.user ?? User();
-        txtEmailController.text = user.email ?? '';
-        txtFirstNameController.text = user.firstName ?? '';
-        txtLastNameController.text = user.lastName ?? '';
-      });
-    });
   }
 
   @override
@@ -89,9 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     imagePath: user.profileUrl ?? "",
                     profileImageData: user.profileImageData ?? "",
                     onClicked: () {},
-                    onImageSelect: (imageFile) {
-                      _profileImageFile = imageFile;
-                    },
+                    onImageSelect: (imageFile) {},
                   ),
                 ],
               ),
@@ -221,47 +194,6 @@ class _ProfilePageState extends State<ProfilePage> {
           size: 15.0,
         ),
         errorMessages: const ["Please enter your last name"]);
-  }
-
-  Widget _buildEditProfileWidget() {
-    return IconButton(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        constraints: const BoxConstraints(),
-        iconSize: 33.0,
-        icon: _isEditModeEnable
-            ? Image.asset(ImagePath.icEditProfileSelect)
-            : Image.asset(ImagePath.icEditProfile),
-        onPressed: () {
-          setState(() {
-            _isEditModeEnable = !_isEditModeEnable;
-            if (!_isEditModeEnable) {
-              user = GlobalVariable.userDetail.user ?? User();
-              txtEmailController.text = user.email ?? '';
-              txtFirstNameController.text = user.firstName ?? '';
-              txtLastNameController.text = user.lastName ?? '';
-            }
-          });
-        });
-  }
-
-  Widget _buildChangePasswordWidget() {
-    return SizedBox(
-      height: 40.0,
-      child: TextButton(
-        child: Text(
-          "Change Password?",
-          style: AppFontStyle.customTextStyle(AppColor.primaryBlueColor,
-              AppFontStyle.fontFamilyPoppins, FontType.medium, 15.0),
-        ),
-        onPressed: () async {
-          FocusScope.of(context).unfocus();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ChangePasswordPage()),
-          );
-        },
-      ),
-    );
   }
 
   Widget _buildLogoutWidget() {

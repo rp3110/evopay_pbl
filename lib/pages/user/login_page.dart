@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../dashboard/dashboard_page.dart';
@@ -58,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 64.0),
               Center(
                 child: Image.asset(
-                  ImagePath.login,
+                  ImagePath.dashboardAppLogo,
                   fit: BoxFit.scaleDown,
                   scale: 1,
                 ),

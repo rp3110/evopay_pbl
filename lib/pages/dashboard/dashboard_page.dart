@@ -3,9 +3,9 @@ import 'package:gool_goal_app/utils/app_colors.dart';
 import 'package:gool_goal_app/utils/app_font_style.dart';
 import 'package:gool_goal_app/utils/image_assets.dart';
 import '../../pages/home/home_page.dart';
-import '../../pages/teams/teams_page.dart';
 import '../../pages/user/profile_page.dart';
 import '../parking_history/parking_history.dart';
+import '../your_vechical_page/your_vehicle.dart';
 
 class DashboardPage extends StatefulWidget {
   final int? pageIndex;
@@ -23,9 +23,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   //this is a list of screens
   final List<Widget> currentScreens = [
-    HomePage(),
+    const HomePage(),
     const ParkingHistory(),
-    const TeamsPage(),
+    const YourVehicle(),
     const ProfilePage()
   ];
 

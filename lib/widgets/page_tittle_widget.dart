@@ -24,7 +24,7 @@ class PageTitleWidget extends StatelessWidget {
           rightPadding ?? 0, bottomPadding ?? 0),
       child: Row(
         children: [
-          Container(width: 2, height: 20, color: AppColor.primaryYellowColor),
+          Container(width: 3, height: 20, color: AppColor.primaryBlueColor),
           const SizedBox(width: 8),
           Text(title, style: AppFontStyle.tabLabelSelectedTextStyle()),
         ],

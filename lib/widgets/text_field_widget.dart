@@ -32,8 +32,9 @@ class TextFieldWidget extends StatelessWidget {
   final bool hasPrefix;
   final EdgeInsetsGeometry? contentPadding;
   final TextCapitalization textCapitalization;
+  final bool flag;
 
-  TextFieldWidget({
+  const TextFieldWidget({
     Key? key,
     required this.name,
     this.initialValue,
@@ -62,6 +63,7 @@ class TextFieldWidget extends StatelessWidget {
     this.contentPadding,
     this.textCapitalization = TextCapitalization.none,
     this.onTapShow,
+    this.flag = false,
   }) : super(key: key);
 
   @override
@@ -91,6 +93,8 @@ class TextFieldWidget extends StatelessWidget {
           style: AppFontStyle.textFieldTextStyle(),
           onChanged: onchange,
           decoration: InputDecoration(
+            filled: true, //<-- SEE HERE
+            fillColor: Colors.white70,
             contentPadding: contentPadding ?? const EdgeInsets.all(15),
             prefixIcon: hasPrefix
                 ? prefixIcon != null
@@ -106,7 +110,13 @@ class TextFieldWidget extends StatelessWidget {
                 : null,
             suffixIcon: suffixIconButtonWidget(),
             hintText: placeholder,
-            hintStyle: AppFontStyle.textFieldPlaceholderStyle(),
+            hintStyle: flag
+                ? TextStyle(
+                    color: AppColor.primaryBlack.withOpacity(0.8),
+                    fontFamily: AppFontStyle.fontFamilyPoppins,
+                    fontWeight: AppFontStyle.fontWeight(FontType.regular),
+                    fontSize: 14)
+                : AppFontStyle.textFieldPlaceholderStyle(),
             counterStyle: AppFontStyle.customTextStyle(AppColor.red,
                 AppFontStyle.fontFamilyPoppins, FontType.regular, 12.0),
             errorStyle: AppFontStyle.customTextStyle(AppColor.red,

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gool_goal_app/utils/utils.dart';
 
-import '../../utils/utils.dart';
-
-class ParkingHistory extends StatefulWidget {
-  const ParkingHistory({Key? key}) : super(key: key);
+class YourVehicle extends StatefulWidget {
+  const YourVehicle({Key? key}) : super(key: key);
 
   @override
-  State<ParkingHistory> createState() => _ParkingHistoryState();
+  State<YourVehicle> createState() => _YourVehicleState();
 }
 
-class _ParkingHistoryState extends State<ParkingHistory> {
+class _YourVehicleState extends State<YourVehicle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +20,7 @@ class _ParkingHistoryState extends State<ParkingHistory> {
             Image.asset(ImagePath.dashboardAppLogo,
                 width: 50, height: 32, fit: BoxFit.scaleDown),
             const SizedBox(width: 4),
-            Text('Parking History',
+            Text('Your Vehicle',
                 style: AppFontStyle.customTextStyle(AppColor.primaryWhite,
                     AppFontStyle.fontFamilyRedHatDisplay, FontType.bold, 18.0)),
           ],
@@ -46,7 +44,7 @@ class _ParkingHistoryState extends State<ParkingHistory> {
 
   cardWidget() {
     return Container(
-      height: 180,
+      height: 100,
       width: double.maxFinite,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -55,11 +53,6 @@ class _ParkingHistoryState extends State<ParkingHistory> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "JHON DOE PARKING",
-            style: AppFontStyle.customTextStyle(AppColor.primaryWhite,
-                AppFontStyle.fontFamilyPoppins, FontType.semiBold, 30),
-          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,12 +61,12 @@ class _ParkingHistoryState extends State<ParkingHistory> {
                   borderRadius: BorderRadius.circular(7),
                   child: Container(
                     color: Colors.white,
-                    height: 95,
-                    width: 95,
+                    height: 75,
+                    width: 125,
                     child: Image.asset(
                       ImagePath.appLogo,
-                      height: 95,
-                      width: 95,
+                      height: 75,
+                      width: 125,
                     ),
                   )),
               const SizedBox(
@@ -86,145 +79,72 @@ class _ParkingHistoryState extends State<ParkingHistory> {
                   Row(
                     children: [
                       Text(
-                        "Parking Id:",
+                        "Vehicle Name :",
                         style: AppFontStyle.customTextStyle(
                             AppColor.primaryWhite,
                             AppFontStyle.fontFamilyPoppins,
                             FontType.semiBold,
-                            12),
+                            14),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
-                        "917483292281910",
+                        "XC 90",
                         style: AppFontStyle.customTextStyle(
                             AppColor.primaryWhite,
                             AppFontStyle.fontFamilyPoppins,
                             FontType.semiBold,
-                            12),
+                            14),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       Text(
-                        "Booking Id:",
+                        "Plate No :",
                         style: AppFontStyle.customTextStyle(
                             AppColor.primaryWhite,
                             AppFontStyle.fontFamilyPoppins,
                             FontType.semiBold,
-                            12),
+                            14),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
-                        "917483292281910",
+                        "GJCJ9900",
                         style: AppFontStyle.customTextStyle(
                             AppColor.primaryWhite,
                             AppFontStyle.fontFamilyPoppins,
                             FontType.semiBold,
-                            12),
+                            14),
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       Text(
-                        "Date:",
+                        "Id :",
                         style: AppFontStyle.customTextStyle(
                             AppColor.primaryWhite,
                             AppFontStyle.fontFamilyPoppins,
                             FontType.semiBold,
-                            12),
+                            14),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Text(
-                        "31 Oct,2023",
+                        "001220220338",
                         style: AppFontStyle.customTextStyle(
                             AppColor.primaryWhite,
                             AppFontStyle.fontFamilyPoppins,
                             FontType.semiBold,
-                            12),
+                            14),
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Hours:",
-                            style: AppFontStyle.customTextStyle(
-                                AppColor.primaryWhite,
-                                AppFontStyle.fontFamilyPoppins,
-                                FontType.semiBold,
-                                12),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            "6.5h",
-                            style: AppFontStyle.customTextStyle(
-                                AppColor.primaryWhite,
-                                AppFontStyle.fontFamilyPoppins,
-                                FontType.semiBold,
-                                12),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Total:",
-                            style: AppFontStyle.customTextStyle(
-                                AppColor.primaryWhite,
-                                AppFontStyle.fontFamilyPoppins,
-                                FontType.semiBold,
-                                12),
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            "1000rs.",
-                            style: AppFontStyle.customTextStyle(
-                                AppColor.primaryWhite,
-                                AppFontStyle.fontFamilyPoppins,
-                                FontType.semiBold,
-                                12),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.location_pin,
-                        color: Colors.white,
-                        size: 15,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "Ahemdabad",
-                        style: AppFontStyle.customTextStyle(
-                            AppColor.primaryWhite,
-                            AppFontStyle.fontFamilyPoppins,
-                            FontType.semiBold,
-                            12),
-                      ),
-                    ],
-                  )
                 ],
               )
             ],
